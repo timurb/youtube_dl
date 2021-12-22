@@ -18,6 +18,11 @@
       text_field  :url
     end
 
+    div class: 'input' do
+      label :location_id
+      text_field :location_id, value: locations.first.id
+    end
+
     div class: 'controls' do
       submit 'Скачать'
     end

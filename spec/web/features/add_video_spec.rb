@@ -2,9 +2,12 @@ require 'features_helper'
 
 RSpec.describe 'Add video' do
   let(:repository) { VideoRepository.new }
+  let!(:locations) { LocationRepository.new }
 
   before do
     repository.clear
+
+    @location = locations.create(path: 'path')
   end
 
   it 'is successful' do
@@ -18,17 +21,5 @@ RSpec.describe 'Add video' do
 
     expect(page).to have_css('.video', count: 1), 'Expected to find 1 video'
     expect(page).to have_content('https://youtube.com/id=asd')
-  end
-
-  it 'displays errors when params are errors' do
-    visit '/videos/new'
-
-    within 'form#video-form' do
-      click_button 'Скачать'
-    end
-
-    expect(current_path).to eq('/videos')
-
-    expect(page).to have_content('Url must be filled')
   end
 end

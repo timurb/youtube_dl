@@ -2,9 +2,12 @@
 
 <% if videos.any? %>
 <div id="videos">
-<% videos.each do |video| %>
+<% videos.select {|x| x.state == VideoState.created }.each do |video| %>
     <div class="video">
-      <a href="<%= video.url %>"><%= video.url %></a>
+      <ul>
+        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
+        <div class="location"><%= video.location_path %></div>
+        <div class="status"><%= VideoState.key(video.state) %></div>
     </div>
 <% end %>
 </div>

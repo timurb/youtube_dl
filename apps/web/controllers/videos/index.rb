@@ -7,7 +7,9 @@ module Web
         expose :videos
 
         def call(params)
-          @videos = VideoRepository.new.all
+          repo = VideoRepository.new
+          ids = repo.all.map(&:id)
+          @videos = ids.map { |id| repo.find_with_location(id) }
         end
       end
     end

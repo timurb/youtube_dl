@@ -1,13 +1,17 @@
 RSpec.describe Web::Controllers::Videos::Create, type: :action do
   let(:action) { described_class.new }
+  let(:locations) { LocationRepository.new }
   let(:repository)  { VideoRepository.new }
 
   before do
     repository.clear
+    locations.clear
+
+    @location = locations.create(path: 'path')
   end
 
   context 'with valid params' do
-    let(:params) { Hash[ video: {url: 'https://youtube.com/id=asd'} ] }
+    let(:params) { Hash[ video: {url: 'https://youtube.com/id=asd', location_id: @location.id} ] }
 
     it 'creates a new video' do
       action.call(params)
@@ -35,7 +39,7 @@ RSpec.describe Web::Controllers::Videos::Create, type: :action do
       response = action.call(params)
       errors = action.params.errors
 
-      expect(errors.dig(:video, :url)).to eq(['must be filled'])
+      expect(errors.dig(:video, :url)).to eq(['is in invalid format'])
     end
   end
 

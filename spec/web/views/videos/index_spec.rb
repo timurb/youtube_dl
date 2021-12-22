@@ -15,7 +15,7 @@ RSpec.describe Web::Views::Videos::Index, type: :view do
   end
 
   context 'when there are videos' do
-    let(:video1) { Video.new(url:'https://youtube.com/id=asd', status: 'new') }
+    let(:video1) { Video.new(url:'https://youtube.com/id=asd', state: VideoState.created) }
     let(:exposures) { Hash[videos: [video1]] }
 
     it 'lists all videos' do

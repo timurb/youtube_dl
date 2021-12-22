@@ -1,3 +1,5 @@
+require 'uri'
+
 module Web
   module Controllers
     module Videos
@@ -8,13 +10,19 @@ module Web
 
         params do
           required(:video).schema do
-            required(:url).filled(:str?)
+            required(:url) {
+              format?(URI.regexp(%w(http https)))
+            }
+
+            required(:location_id) {
+              filled?
+            }
           end
         end
 
         def call(params)
           if params.valid?
-            params[:video][:status] = 'new'
+            params[:video][:state] = VideoState.created
             video = Video.new(params[:video])
 
             repository = VideoRepository.new
