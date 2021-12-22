@@ -1,0 +1,9 @@
+version: '3.6'
+
+services:
+  app:
+    build: .
+    volumes:
+     - .:/app
+    ports:
+     - 2300:2300
