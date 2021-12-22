@@ -1,0 +1,3 @@
+project=youtube_dl
+test=rspec
+template=erb
