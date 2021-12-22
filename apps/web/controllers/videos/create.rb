@@ -10,29 +10,40 @@ module Web
 
         params do
           required(:video).schema do
+            required(:location_id) {
+              filled?
+            }
+
             required(:url) {
               format?(URI.regexp(%w(http https)))
             }
 
-            required(:location_id) {
-              filled?
-            }
           end
         end
 
         def call(params)
           if params.valid?
-            params[:video][:state] = VideoState.created
-            video = Video.new(params[:video])
-
             repository = VideoRepository.new
-            @video = repository.create(video)
 
+            video = params[:video]
+            found = repository.find_by_url(params[:video][:url])
+
+            if found
+              @video = repository.update(found.id, state: VideoState.created)
+            else
+              video[:state] = VideoState.created
+              @video = repository.create(video)
+            end
+
+            video[:id] = @video.id
+            p video
+            YoutubeDlWorker.perform_async(id: video[:id], url: video[:url])
             redirect_to routes.videos_path
           else
             self.status = 422
           end
         end
+
       end
     end
   end

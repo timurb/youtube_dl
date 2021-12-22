@@ -8,3 +8,8 @@ services:
     ports:
      - "2300:2300"
     command: bundle exec hanami server --host=0.0.0.0
+    environment:
+      REDIS_URL: redis://redis:6379/0
+
+  redis:
+    image: redis

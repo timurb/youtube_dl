@@ -5,6 +5,7 @@
 <% videos.select {|x| x.state == VideoState.created }.each do |video| %>
     <div class="video">
       <ul>
+        <div class="id"><%= video.id %></div>
         <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
         <div class="location"><%= video.location_path %></div>
         <div class="status"><%= VideoState.key(video.state) %></div>
@@ -15,3 +16,14 @@
 <p class="placeholder">Пока нет видео</p>
 <% end %>
 <a href="<%= routes.new_video_path %>">Загрузить новое видео</a>
+<h3>Завершенные</h3>
+<% videos.select {|x| x.state != VideoState.created }.each do |video| %>
+    <div class="video">
+      <ul>
+        <div class="id"><%= video.id %></div>
+        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
+        <div class="location"><%= video.location_path %></div>
+        <div class="status"><%= VideoState.key(video.state) %></div>
+        <div class="date"><%= video.updated_at %></div>
+    </div>
+<% end %>
