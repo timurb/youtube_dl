@@ -1,0 +1,14 @@
+<h2>Видео с Youtube</h2>
+
+<% if videos.any? %>
+<div id="videos">
+<% videos.each do |video| %>
+    <div class="video">
+      <a href="<%= video.url %>"><%= video.url %></a>
+    </div>
+<% end %>
+</div>
+<% else %>
+<p class="placeholder">Пока нет видео</p>
+<% end %>
+<a href="<%= routes.new_video_path %>">Загрузить новое видео</a>

@@ -6,4 +6,5 @@ services:
     volumes:
      - .:/app
     ports:
-     - 2300:2300
+     - "2300:2300"
+    command: bundle exec hanami server --host=0.0.0.0

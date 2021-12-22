@@ -1,0 +1,25 @@
+<h2>Скачать новое видео</h2>
+
+<% if !params.valid? %>
+<div class="errors">
+<h3>Ошибка</h3>
+<ul>
+<% params.error_messages.each do |message| %>
+<li><%= message %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+
+<%=
+  form_for :video, routes.videos_path do
+    div class: 'input' do
+      label :url
+      text_field  :url
+    end
+
+    div class: 'controls' do
+      submit 'Скачать'
+    end
+  end
+%>
