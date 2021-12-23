@@ -1,75 +1,75 @@
-<h2>Видео с Youtube</h2>
 
+<table class="table"><tbody>
 <% if videos.any? %>
-<div id="videos">
 <% pending.each do |video| %>
-    <div class="video">
-      <ul>
-        <div class="id"><%= video.id %></div>
-        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
-        <div class="location"><%= video.location_path %></div>
-        <div class="status"><%= VideoState.key(video.state) %></div>
-        <div class="date"><%= video.updated_at %></div>
-    </div>
+<th>Видео в очереди</th>
+<tr>
+<td><%= video.id %></td>
+<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.location_path %></td>
+<td><%= VideoState.key(video.state) %></td>
+<td><%= video.updated_at %></td>
+</tr>
 <% end %>
-</div>
 <% else %>
-<p class="placeholder">Пока нет видео</p>
+<th>Пока нет видео</th>
 <% end %>
+</tbody></table>
 
-<a href="<%= routes.new_video_path %>">Загрузить новое видео</a>
+<p class="btn"><a href="<%= routes.new_video_path %>">Загрузить новое видео</a></p>
+
+<table class="table"><tbody>
 <% if active.any? %>
-<h3>Скачиваются</h3>
+<th>Скачиваются</th>
 <% active.each do |video| %>
-    <div class="video">
-      <ul>
-        <div class="id"><%= video.id %></div>
-        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
-        <div class="location"><%= video.location_path %></div>
-        <div class="status"><%= VideoState.key(video.state) %></div>
-        <div class="date"><%= video.updated_at %></div>
-    </div>
+<tr>
+<td><%= video.id %></td>
+<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.location_path %></td>
+<td><%= VideoState.key(video.state) %></td>
+<td><%= video.updated_at %></td>
+</tr>
 <% end %>
 <% end %>
 
 <% if error.any? %>
 <h3>Ошибка</h3>
 <% error.each do |video| %>
-    <div class="video">
-      <ul>
-        <div class="id"><%= video.id %></div>
-        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
-        <div class="location"><%= video.location_path %></div>
-        <div class="status"><%= VideoState.key(video.state) %></div>
-        <div class="date"><%= video.updated_at %></div>
-    </div>
+<tr>
+<td><%= video.id %></td>
+<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.location_path %></td>
+<td><%= VideoState.key(video.state) %></td>
+<td><%= video.updated_at %></td>
+</tr>
 <% end %>
 <% end %>
 
 <% if completed.any? %>
-<h3>Завершенные</h3>
+<th>Завершенные</th>
 <% completed.each do |video| %>
-    <div class="video">
-      <ul>
-        <div class="id"><%= video.id %></div>
-        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
-        <div class="location"><%= video.location_path %></div>
-        <div class="status"><%= VideoState.key(video.state) %></div>
-        <div class="date"><%= video.updated_at %></div>
-    </div>
+<tr>
+<td><%= video.id %></td>
+<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.location_path %></td>
+<td><%= VideoState.key(video.state) %></td>
+<td><%= video.updated_at %></td>
+</tr>
 <% end %>
 <% end %>
 
 <% if unknown.any? %>
 <h3>Неизвестное состояние</h3>
 <% unknown.each do |video| %>
-    <div class="video">
-      <ul>
-        <div class="id"><%= video.id %></div>
-        <div class="URL"><a href="<%= video.url %>"><%= video.url %></a></div>
-        <div class="location"><%= video.location_path %></div>
-        <div class="status"><%= VideoState.key(video.state) %></div>
-        <div class="date"><%= video.updated_at %></div>
-    </div>
+<tr>
+<td><%= video.id %></td>
+<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.location_path %></td>
+<td><%= VideoState.key(video.state) %></td>
+<td><%= video.updated_at %></td>
+</tr>
 <% end %>
 <% end %>
+</tbody>
+</table>
+

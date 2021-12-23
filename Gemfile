@@ -5,6 +5,7 @@ gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'ruby-enum'
 gem 'sidekiq'
+gem 'hanami-bootstrap'
 
 gem 'sqlite3'
 

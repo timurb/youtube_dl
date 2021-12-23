@@ -3,10 +3,16 @@
   <head>
     <title>Youtube videos</title>
     <%= favicon %>
+    <%= stylesheet 'bootstrap' %>
+    <%= javascript 'bootstrap' %>
   </head>
   <body>
-    <h1>Youtube videos</h1>
+    <div class="container">
+    <h1><a href="<%= routes.videos_path %>">Youtube videos</a></h1>
 
+    <div class="m-5">
     <%= yield %>
+    </div>
+    </div>
   </body>
 </html>

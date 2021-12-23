@@ -1,8 +1,8 @@
 <h2>Скачать новое видео</h2>
 
 <% if !params.valid? %>
-<div class="errors">
-<h3>Ошибка</h3>
+<div class="alert alert-primary">
+Ошибка
 <ul>
 <% params.error_messages.each do |message| %>
 <li><%= message %></li>
@@ -12,19 +12,19 @@
 <% end %>
 
 <%=
-  form_for :video, routes.videos_path do
-    div class: 'input' do
+  form_for :video, routes.videos_path, class: 'my-5' do
+    div class: 'form-group' do
       label :url
-      text_field  :url
+      text_field :url, class: 'form-control'
     end
 
-    div class: 'input' do
+    div class: 'form-group' do
       label :location_id
-      text_field :location_id, value: (locations.first.id rescue nil)
+      select :location_id, locations, class: 'form-control'
     end
 
     div class: 'controls' do
-      submit 'Скачать'
+      submit 'Скачать', class: 'btn'
     end
   end
 %>

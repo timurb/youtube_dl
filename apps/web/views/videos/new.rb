@@ -3,8 +3,10 @@ module Web
     module Videos
       class New
         include Web::View
+
         def locations
-          LocationRepository.new
+          repo = LocationRepository.new
+          Hash[repo.all.map {|loc| [loc.path, loc.id]}]
         end
       end
     end
