@@ -1,3 +1,8 @@
+require 'sidekiq/web'
+
+Sidekiq::Web.set :session_secret, YoutubeDl::Config.new.session_secret
+
+
 # Configure your routes here
 # See: https://guides.hanamirb.org/routing/overview
 #
@@ -7,3 +12,4 @@
 root to: 'home#index'
 
 resources :videos, only: [:index, :new, :create]
+mount Sidekiq::Web, at: '/sidekiq'

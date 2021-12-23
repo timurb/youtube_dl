@@ -7,6 +7,10 @@ class YoutubeDlWorker
     repo = VideoRepository.new
     location = LocationRepository.new
     video = repo.find_with_location(arg["id"])
+    if !video
+      Hanami.logger.error "Could not find video id #{arg['id']}"
+      raise StandardError.new "Could not find video id #{arg['id']}"
+    end
 
     if video.state_const == VideoState.created
       Hanami.logger.info "Video #{video.url} state is #{video.state_const}. Download skipped"

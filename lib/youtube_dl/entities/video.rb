@@ -7,6 +7,10 @@ class Video < Hanami::Entity
     location.path if location
   end
 
+  def location_full_path
+    location.full_path if location
+  end
+
   def path_for
     "#{location_path}/#{filename}"    ###FIXME
   end

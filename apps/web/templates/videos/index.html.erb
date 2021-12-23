@@ -1,8 +1,8 @@
 
 <table class="table"><tbody>
 <% if videos.any? %>
-<% pending.each do |video| %>
 <th>Видео в очереди</th>
+<% pending.each do |video| %>
 <tr>
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
@@ -25,7 +25,7 @@
 <tr>
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
-<td><%= video.location_path %></td>
+<td><%= video.location_full_path %></td>
 <td><%= VideoState.key(video.state) %></td>
 <td><%= video.updated_at %></td>
 </tr>
@@ -33,12 +33,12 @@
 <% end %>
 
 <% if error.any? %>
-<h3>Ошибка</h3>
+<th>С ошибками</th>
 <% error.each do |video| %>
 <tr>
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
-<td><%= video.location_path %></td>
+<td><%= video.location_full_path %></td>
 <td><%= VideoState.key(video.state) %></td>
 <td><%= video.updated_at %></td>
 </tr>
@@ -51,7 +51,7 @@
 <tr>
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
-<td><%= video.location_path %></td>
+<td><%= video.location_full_path %></td>
 <td><%= VideoState.key(video.state) %></td>
 <td><%= video.updated_at %></td>
 </tr>
@@ -64,7 +64,7 @@
 <tr>
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
-<td><%= video.location_path %></td>
+<td><%= video.location_full_path %></td>
 <td><%= VideoState.key(video.state) %></td>
 <td><%= video.updated_at %></td>
 </tr>
