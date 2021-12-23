@@ -13,7 +13,7 @@ class YoutubeDlWorker
     else
 
       repo.update(video.id, state: VideoState.processing)
-      if download_video(video.url, video.location.path).exitstatus == 0
+      if download_video(video.url, video.location.full_path).exitstatus == 0
         repo.update(video.id, state: VideoState.done)
         Hanami.logger.info "Finished downloading video #{video.url} to #{video.location.path}"
       else
@@ -24,11 +24,13 @@ class YoutubeDlWorker
   end
 
   def download_video(video, location)
+    Dir.chdir(location)
     Hanami.logger.info "Downloading video #{video} to #{location}"
     stdin, stdout, stderr, wait_thr = Open3.popen3("youtube-dl #{video}")
     exit_status = wait_thr.value
-    puts "Exit status: #{exit_status}"
-    puts stdout.read, stderr.read
+    Hanami.logger.info "Exit status: #{exit_status}"
+    Hanami.logger.debug stdout.read
+    Hanami.logger.debug stderr.read
     exit_status
   end
 end

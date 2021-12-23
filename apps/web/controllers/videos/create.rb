@@ -36,7 +36,6 @@ module Web
             end
 
             video[:id] = @video.id
-            p video
             YoutubeDlWorker.perform_async(id: video[:id], url: video[:url])
             redirect_to routes.videos_path
           else
