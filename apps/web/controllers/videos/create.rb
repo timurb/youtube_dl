@@ -29,7 +29,7 @@ module Web
             found = repository.find_by_url(params[:video][:url])
 
             if found
-              @video = repository.update(found.id, state: VideoState.created)
+              @video = repository.update(found.id, state: VideoState.restarted)
             else
               video[:state] = VideoState.created
               @video = repository.create(video)
