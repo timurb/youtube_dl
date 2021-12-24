@@ -8,8 +8,7 @@ module Web
           if params.valid?
             repository = VideoRepository.new
 
-            video = repository.find_with_location(params[:id])
-
+            video = repository.find_with_info(params[:id])
             ::File.delete(video.filename) if video.filename
             repository.update(video.id, state_id: VideoState.deleted)
 

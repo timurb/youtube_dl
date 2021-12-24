@@ -5,7 +5,6 @@ Hanami::Model.migration do
 
       column :url, String, null: false
       column :state_id, Integer, null: false
-      column :filename, String
 
       foreign_key :location_id, :locations, null: false
 

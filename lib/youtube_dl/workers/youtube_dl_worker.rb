@@ -19,12 +19,14 @@ class YoutubeDlWorker
     repo.update(video.id, state_id: VideoState.processing)
     Dir.chdir(video.location.full_path)
 
-    update_info(video)
+    video_info = update_info(video)
 
-    if download_video(video.url, video.location.full_path).exitstatus != 0
+    if download_video(video.url).exitstatus != 0
       repo.update(video.id, state_id: VideoState.error)
       raise "Error downloading video #{video.url}"
     end
+
+    info = update_filename(video_info)
 
     repo.update(video.id, state_id: VideoState.done)
     Hanami.logger.info "Finished downloading video #{video.url} to #{video.location.path}"
@@ -47,17 +49,40 @@ class YoutubeDlWorker
     id, _, exit_status = run_command("youtube-dl --get-id #{video}", "Getting id for  #{video}")
     return nil if exit_status !=0
 
+    filename, _, exit_status = run_command("youtube-dl --get-filename #{video}", "Getting filename for  #{video}")
+    return nil if exit_status !=0
+
     _, _, exit_status = run_command("youtube-dl --write-info-json --skip-download --id #{video}", "Getting info for  #{video}")
     return nil if exit_status !=0
 
     json = JSON.parse(File.read("#{id}.info.json"))
     File.delete("#{id}.info.json")
+    json['_filename'] = filename
 
     return json
   end
 
-  def download_video(video, location)
-    _, _, exit_status = run_command("youtube-dl #{video}", "Downloading video #{video} to #{location}")
+  def download_video(video)
+    _, _, exit_status = run_command("youtube-dl #{video}", "Downloading video #{video}")
     exit_status
+  end
+
+  def update_filename(info)
+    repo = VideoInfoRepository.new
+    filename = discover_file(info['filename'])
+    filename = info['filename'] if !filename
+
+    repo.update(info['id'], filename: filename)
+  end
+
+  def discover_file(filename)
+    [
+      filename,
+      "#{File.basename(filename, '.mp4')}.mkv",
+    ].each do |file|
+        return file if File.exist?(file)
+    end
+
+    Hanami.logger.warn "Could not find downloaded file #{filename}"
   end
 end
