@@ -10,9 +10,7 @@ class YoutubeDlWorker
     video = repo.find_with_location(arg["id"])
     raise StandardError.new "Could not find video id #{arg['id']}" if !video
 
-
-    if !([ VideoState.created, VideoState.restarted ].include?(video.state_id))
-      Hanami.logger.info "Video #{video.url} state is #{video.state_text}. Download skipped"
+    if !VideoState.pending?(video.state_id)
       Hanami.logger.info "Video #{video.url} state is #{video.state_text}. Download skipped"
       return
     end
