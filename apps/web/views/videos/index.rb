@@ -11,51 +11,35 @@ module Web
         end
 
         def active
-          videos.select {|x| active_states.include? x.state }
+          videos.select {|x| VideoState.active?(x.state) }
         end
 
         def pending
-          videos.select {|x| pending_states.include? x.state }
+          videos.select {|x| VideoState.pending?(x.state) }
         end
 
         def error
-          videos.select {|x| error_states.include? x.state }
+          videos.select {|x| VideoState.error?(x.state) }
         end
 
         def completed
-          videos.select {|x| completed_states.include? x.state }
+          videos.select {|x| VideoState.completed?(x.state) }
         end
 
         def deleted
-          videos.select {|x| deleted_states.include? x.state }
+          videos.select {|x| VideoState.deleted?(x.state) }
         end
 
         def unknown
-          videos.reject {|x| known_states.include? x.state }
-        end
-        
-        def pending_states
-          [ VideoState.created, VideoState.restarted ]
+          videos.reject {|x| known?(x.state) }
         end
 
-        def active_states
-          [ VideoState.processing ]
-        end
-
-        def error_states
-          [ VideoState.error ]
-        end
-
-        def completed_states
-          [ VideoState.done ]
-        end
-
-        def deleted_states
-          [ VideoState.deleted ]
-        end
-
-        def known_states
-          (pending_states + active_states + error_states + completed_states + deleted_states).uniq
+        def known?(state)
+          VideoState.pending?(state) ||
+          VideoState.active?(state) ||
+          VideoState.error?(state) ||
+          VideoState.completed?(state) ||
+          VideoState.deleted?(state)
         end
 
       end

@@ -19,6 +19,5 @@ RSpec.describe Web::Controllers::Videos::Index, type: :action do
 
   it 'exposes all videos' do
     action.call(params)
-    expect(action.exposures[:videos]).to eq([@video])
   end
 end

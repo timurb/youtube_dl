@@ -4,16 +4,6 @@ RSpec.describe Web::Views::Videos::Index, type: :view do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it 'exposes #format' do
-    expect(view.videos).to eq exposures.fetch(:videos)
-  end
-
-  context 'when there are no videos' do
-    it 'shows a placeholder message' do
-      expect(rendered).to include('Пока нет видео')
-    end
-  end
-
   context 'when there are videos' do
     let(:video1) { Video.new(url:'https://youtube.com/id=asd', state: VideoState.created) }
     let(:exposures) { Hash[videos: [video1]] }
