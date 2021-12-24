@@ -11,6 +11,10 @@ class Video < Hanami::Entity
     location.full_path if location
   end
 
+  def location_label
+    location.label if location
+  end
+
   def state_text
     VideoState.key(state_id)
   end

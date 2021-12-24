@@ -6,7 +6,7 @@ module Web
 
         def locations
           repo = LocationRepository.new
-          Hash[repo.all.map {|loc| [loc.path, loc.id]}]
+          Hash[repo.all.map {|loc| [loc.label, loc.id]}]
         end
       end
     end

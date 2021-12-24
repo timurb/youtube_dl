@@ -3,6 +3,10 @@ class Location < Hanami::Entity
     File.join(base_path, path)
   end
 
+  def label
+    name || full_path
+  end
+
   private
 
   def base_path
