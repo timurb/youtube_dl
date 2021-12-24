@@ -11,27 +11,27 @@ module Web
         end
 
         def active
-          videos.select {|x| VideoState.active?(x.state) }
+          videos.select {|x| VideoState.active?(x.state_id) }
         end
 
         def pending
-          videos.select {|x| VideoState.pending?(x.state) }
+          videos.select {|x| p x; VideoState.pending?(x.state_id) }
         end
 
         def error
-          videos.select {|x| VideoState.error?(x.state) }
+          videos.select {|x| VideoState.error?(x.state_id) }
         end
 
         def completed
-          videos.select {|x| VideoState.completed?(x.state) }
+          videos.select {|x| VideoState.completed?(x.state_id) }
         end
 
         def deleted
-          videos.select {|x| VideoState.deleted?(x.state) }
+          videos.select {|x| VideoState.deleted?(x.state_id) }
         end
 
         def unknown
-          videos.reject {|x| known?(x.state) }
+          videos.reject {|x| known?(x.state_id) }
         end
 
         def known?(state)

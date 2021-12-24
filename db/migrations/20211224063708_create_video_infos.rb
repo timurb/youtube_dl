@@ -8,7 +8,7 @@ Hanami::Model.migration do
       column :title, String
       column :thumbnail, String
       column :description, String
-      column :duration, String
+      column :duration, Integer
       column :filename, String
 
       column :uploader, String

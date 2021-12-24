@@ -11,11 +11,7 @@ class Video < Hanami::Entity
     location.full_path if location
   end
 
-  def path_for
-    "#{location_path}/#{filename}"    ###FIXME
-  end
-
-  def state_const
-    VideoState.key(state)
+  def state_text
+    VideoState.key(state_id)
   end
 end

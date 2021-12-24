@@ -9,7 +9,7 @@ RSpec.describe 'Visit videos page' do
     locations.clear
 
     @location = locations.create(path: 'path')
-    repository.create(url: 'https://youtube.com/id=asd', state: VideoState.created, location_id: @location.id)
+    repository.create(url: 'https://youtube.com/id=asd', state_id: VideoState.created, location_id: @location.id)
   end
 
   it 'is successful' do

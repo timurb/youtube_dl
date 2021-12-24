@@ -9,7 +9,7 @@ RSpec.describe Web::Controllers::Videos::Index, type: :action do
     locations.clear
 
     @location = locations.create(path: 'path')
-    @video = repository.create(url: 'https://youtube.com/id=asd', state: VideoState.created, location_id: @location.id)
+    @video = repository.create(url: 'https://youtube.com/id=asd', state_id: VideoState.created, location_id: @location.id)
   end
 
   it 'is successful' do

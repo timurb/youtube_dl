@@ -7,7 +7,7 @@
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_path %></td>
-<td><%= VideoState.key(video.state) %></td>
+<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -26,7 +26,7 @@
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_full_path %></td>
-<td><%= VideoState.key(video.state) %></td>
+<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -39,7 +39,7 @@
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_full_path %></td>
-<td><%= VideoState.key(video.state) %></td>
+<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -52,7 +52,7 @@
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_full_path %></td>
-<td><%= VideoState.key(video.state) %></td>
+<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -65,7 +65,7 @@
 <td><%= video.id %></td>
 <td><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_full_path %></td>
-<td><%= VideoState.key(video.state) %></td>
+<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
