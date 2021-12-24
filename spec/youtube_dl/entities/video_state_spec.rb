@@ -13,9 +13,11 @@ RSpec.describe VideoState, type: :entity do
 
   it 'accepts constants for matching' do
     expect(VideoState.active?(VideoState.processing)).to be true
+    expect(VideoState.deleted?(VideoState.deleted)).to be true
   end
 
   it 'accepts symbols for matching' do
     expect(VideoState.active?(:processing)).to be true
+    expect(VideoState.deleted?(:deleted)).to be true
   end
 end

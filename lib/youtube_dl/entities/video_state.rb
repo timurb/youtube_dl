@@ -30,7 +30,7 @@ class VideoState
     end
 
     def deleted?(state)
-      [ VideoState.deleted ].include?(state)
+      [ VideoState.deleted ].include?(state) ||
         [ VideoState.deleted ].include?(value(state))
     end
   end

@@ -54,6 +54,26 @@
 <td><%= title_for(video) %><br><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
+<td>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :delete do
+    submit 'Удалить', class: 'btn btn-danger'
+  end
+%>
+</td>
+</tr>
+<% end %>
+<% end %>
+
+<% if deleted.any? %>
+<th>Удаленные</th>
+<% deleted.each do |video| %>
+<tr>
+<td><%= video.id %>: <%= video.state_text %></td>
+<td><img class="w-50" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= title_for(video) %></td>
+<td><%= video.location_label %></td>
+<td><%= video.updated_at %></td>
 </tr>
 <% end %>
 <% end %>

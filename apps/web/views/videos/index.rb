@@ -15,7 +15,7 @@ module Web
         end
 
         def pending
-          videos.select {|x| p x; VideoState.pending?(x.state_id) }
+          videos.select {|x| VideoState.pending?(x.state_id) }
         end
 
         def error
