@@ -1,11 +1,14 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require 'rollbar/middleware/rack'
 require_relative '../lib/youtube_dl'
 require_relative '../apps/web/application'
 require_relative './sidekiq'
 
 Hanami.configure do
+  middleware.use Rollbar::Middleware::Rack
+
   mount Web::Application, at: '/'
 
   model do

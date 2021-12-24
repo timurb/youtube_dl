@@ -7,6 +7,7 @@ gem 'ruby-enum'
 gem 'sidekiq'
 gem 'hanami-bootstrap'
 gem 'anyway_config'
+gem 'rollbar'
 
 gem 'sqlite3'
 
