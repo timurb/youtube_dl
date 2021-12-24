@@ -34,6 +34,21 @@ module Web
           videos.reject {|x| known?(x.state_id) }
         end
 
+        def info_for(video)
+          repo = VideoRepository.new
+          info = repo.find_with_info(video.id).video_info
+        end
+
+        def thumbnail_for(video)
+          res = info_for(video)
+          res.thumbnail if res
+        end
+
+        def title_for(video)
+          res = info_for(video)
+          res.title if res
+        end
+
         def known?(state)
           VideoState.pending?(state) ||
           VideoState.active?(state) ||
@@ -41,7 +56,6 @@ module Web
           VideoState.completed?(state) ||
           VideoState.deleted?(state)
         end
-
       end
     end
   end

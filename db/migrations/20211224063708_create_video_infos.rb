@@ -3,7 +3,8 @@ Hanami::Model.migration do
     create_table :video_infos do
       primary_key :id
 
-      column :youtube_id, String, null:false
+      column :youtube_id, String, null: false
+      foreign_key :video_id, :videos, null: false, on_delete: :cascade
 
       column :title, String
       column :thumbnail, String

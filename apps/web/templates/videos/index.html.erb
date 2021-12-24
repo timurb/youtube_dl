@@ -4,10 +4,10 @@
 <th>Видео в очереди</th>
 <% pending.each do |video| %>
 <tr>
-<td><%= video.id %></td>
-<td><a href="<%= video.url %>"><%= video.url %></a></td>
-<td><%= video.location_path %></td>
-<td><%= video.state_text %></td>
+<td><%= video.id %>: <%= video.state_text %></td>
+<td><img class="w-100" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= title_for(video) %></td>
+<td><%= video.location_full_path %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -23,10 +23,10 @@
 <th>Скачиваются</th>
 <% active.each do |video| %>
 <tr>
-<td><%= video.id %></td>
-<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.id %>: <%= video.state_text %></td>
+<td><img class="w-100" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= title_for(video) %></td>
 <td><%= video.location_full_path %></td>
-<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -36,10 +36,10 @@
 <th>С ошибками</th>
 <% error.each do |video| %>
 <tr>
-<td><%= video.id %></td>
-<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.id %>: <%= video.state_text %></td>
+<td><img class="w-100" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= title_for(video) %></td>
 <td><%= video.location_full_path %></td>
-<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -49,10 +49,10 @@
 <th>Завершенные</th>
 <% completed.each do |video| %>
 <tr>
-<td><%= video.id %></td>
-<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.id %>: <%= video.state_text %></td>
+<td><img class="w-100" src="<%= thumbnail_for(video) %>"></td>
+<td><%= title_for(video) %><br><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= video.location_full_path %></td>
-<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>
@@ -62,10 +62,10 @@
 <h3>Неизвестное состояние</h3>
 <% unknown.each do |video| %>
 <tr>
-<td><%= video.id %></td>
-<td><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= video.id %>: <%= video.state_text %></td>
+<td><img class="w-100" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><%= title_for(video) %></td>
 <td><%= video.location_full_path %></td>
-<td><%= video.state_text %></td>
 <td><%= video.updated_at %></td>
 </tr>
 <% end %>

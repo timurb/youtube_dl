@@ -8,6 +8,10 @@ class VideoRepository < Hanami::Repository
     aggregate(:location).where(id: id).map_to(Video).one
   end
 
+  def find_with_info(id)
+    aggregate(:video_info).where(id: id).map_to(Video).one
+  end
+
   def find_by_url(url)
     videos.where(url: url).first
   end

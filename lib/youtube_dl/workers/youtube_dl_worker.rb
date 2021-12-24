@@ -7,8 +7,9 @@ class YoutubeDlWorker
   def perform(arg)
     repo = VideoRepository.new
 
-    video = repo.find_with_location(arg["id"])
-    raise StandardError.new "Could not find video id #{arg['id']}" if !video
+    video = repo.find_with_location(arg['id'])
+    raise "Could not find video id #{arg['id']}" if !video
+    raise "Requested video URL #{arg['url']} doesn't match existing #{video.url}" if arg['url'] != video.url
 
     if !VideoState.pending?(video.state_id)
       Hanami.logger.info "Video #{video.url} state is #{video.state_text}. Download skipped"
