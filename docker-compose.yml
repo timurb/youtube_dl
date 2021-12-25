@@ -3,13 +3,24 @@ version: '3.6'
 services:
   app:
     build: .
-    volumes:
-     - .:/app
     ports:
      - "2300:2300"
-    command: bundle exec hanami server --host=0.0.0.0
+    command: bundle exec foreman start
     environment:
       REDIS_URL: redis://redis:6379/0
 
   redis:
     image: redis
+
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: CredionApp
+    volumes:
+      - pgdata:/var/lib/postgresql/data:rw
+
+volumes:
+  pgdata:

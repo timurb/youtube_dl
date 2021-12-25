@@ -8,8 +8,10 @@ gem 'sidekiq'
 gem 'hanami-bootstrap'
 gem 'anyway_config'
 gem 'rollbar'
+gem 'foreman'
 
-gem 'sqlite3'
+gem 'pg'
+#gem 'sqlite3'
 
 group :development do
   # Code reloading

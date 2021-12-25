@@ -1,0 +1,11 @@
+##
+## This is override file for dev env use
+## Remove it in Prod
+##
+
+version: '3.6'
+
+services:
+  app:
+    volumes:
+      - .:/app
