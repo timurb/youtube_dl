@@ -56,8 +56,8 @@
 <td><%= video.updated_at %></td>
 <td>
 <%=
-  form_for :video, routes.path(:video, id: video.id), method: :delete do
-    submit 'Удалить', class: 'btn btn-danger'
+  form_for :video, routes.path(:video, id: video.id), method: :delete, 'data-confirm' => 'Вы уверены?' do
+    submit 'Удалить', class: 'btn btn-danger show-alert'
   end
 %>
 </td>

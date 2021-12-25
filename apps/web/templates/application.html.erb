@@ -5,6 +5,15 @@
     <%= favicon %>
     <%= stylesheet 'bootstrap' %>
     <%= javascript 'bootstrap' %>
+    <%= javascript 'jquery.min.js' %>
+    <script>
+      $(document).on('submit', 'form[data-confirm]', function(e){
+          if(!confirm($(this).data('confirm'))){
+              e.stopImmediatePropagation();
+            e.preventDefault();
+              }
+      });
+    </script>
   </head>
   <body>
     <div class="container">
