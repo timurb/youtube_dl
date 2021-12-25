@@ -10,8 +10,8 @@ module LocalVideo
 
     if exit_status != 0
       Hanami.logger.error "Exit status: #{exit_status}"
-      Hanami.logger.debug "STDOUT: #{lines_stdout}"
-      Hanami.logger.debug "STDERR: #{lines_stderr}"
+      Hanami.logger.info "STDOUT: #{lines_stdout}"
+      Hanami.logger.info "STDERR: #{lines_stderr}"
     end
 
     [lines_stdout.chomp, lines_stderr, exit_status]

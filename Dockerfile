@@ -8,4 +8,6 @@ RUN bundle install
 
 COPY . /app
 
+RUN bundle exec hanami assets precompile HANAMI_ENV=production
+
 EXPOSE 2300

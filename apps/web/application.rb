@@ -138,7 +138,7 @@ module Web
         # See: https://guides.hanamirb.org/assets/compressors
         #
         # In order to skip stylesheet compression comment the following line
-        stylesheet_compressor :builtin
+        stylesheet_compressor nil # builtin compressor trashes the CSS for some reason
 
         # Specify sources for assets
         #
