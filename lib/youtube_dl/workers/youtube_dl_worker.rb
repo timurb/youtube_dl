@@ -34,11 +34,12 @@ class YoutubeDlWorker
 
   def update_info(video)
     video_repo = VideoRepository.new
+    info_repo = VideoInfoRepository.new
 
     json = get_info(video.url)
     new_info = VideoInfo.create_from_youtube(json)
 
-    if video.video_info
+    if info_repo.find_by_video(video.id).first
       video_repo.update_video_info(video, new_info)
     else
       video_repo.add_video_info(video, new_info)

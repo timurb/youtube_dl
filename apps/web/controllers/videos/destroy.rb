@@ -7,9 +7,19 @@ module Web
         def call(params)
           if params.valid?
             repository = VideoRepository.new
+            info_repository = VideoInfoRepository.new
 
-            video = repository.find_with_info(params[:id])
-            ::File.delete(video.filename) if video.filename
+            video = repository.find_with_location(params[:id])
+            Dir.chdir(video.location.full_path)
+
+            info = info_repository.find_by_video(video.id).first
+
+            if info && info.filename
+              Hanami.logger.info "Deleting #{info.filename} from #{video.location.full_path}"
+              ::File.delete(info.filename) if info.filename
+            else
+              Hanami.logger.info "No video info available for video #{video.id}"
+            end
             repository.update(video.id, state_id: VideoState.deleted)
 
             redirect_to routes.videos_path
