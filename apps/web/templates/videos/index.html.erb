@@ -1,7 +1,7 @@
 
 <table class="table"><tbody>
 <% if videos.any? %>
-<th>Видео в очереди</th>
+<th class="table-primary" colspan="100%">Видео в очереди</th>
 <% pending.each do |video| %>
 <tr>
 <td><%= video.id %>: <%= video.state_text %></td>
@@ -16,15 +16,15 @@
 <% end %>
 </tbody></table>
 
-<p class="btn"><a href="<%= routes.new_video_path %>">Загрузить новое видео</a></p>
+<p class="m-5"><a  class="btn btn-primary" href="<%= routes.new_video_path %>">Загрузить новое видео</a></p>
 
 <table class="table"><tbody>
 <% if active.any? %>
-<th>Скачиваются</th>
+<th class="table-primary" colspan="100%">Скачиваются</th>
 <% active.each do |video| %>
 <tr>
 <td><%= video.id %>: <%= video.state_text %></td>
-<td><img class="w-100" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
+<td><img class="w-25" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= title_for(video) %></td>
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
@@ -33,7 +33,7 @@
 <% end %>
 
 <% if error.any? %>
-<th>С ошибками</th>
+<th class="table-primary" colspan="100%">С ошибками</th>
 <% error.each do |video| %>
 <tr>
 <td><%= video.id %>: <%= video.state_text %></td>
@@ -46,7 +46,7 @@
 <% end %>
 
 <% if completed.any? %>
-<th>Завершенные</th>
+<th class="table-primary" colspan="100%">Завершенные</th>
 <% completed.each do |video| %>
 <tr>
 <td><%= video.id %>: <%= video.state_text %></td>
@@ -66,7 +66,7 @@
 <% end %>
 
 <% if deleted.any? %>
-<th>Удаленные</th>
+<th class="table-primary" colspan="100%">Удаленные</th>
 <% deleted.each do |video| %>
 <tr>
 <td><%= video.id %>: <%= video.state_text %></td>
