@@ -25,7 +25,8 @@ services:
       - redis
       - postgres
     labels:
-      caddy: http://:80
+#      caddy: http://:80
+      caddy: http://yt.local:80
       caddy.reverse_proxy: web:2300
 
   sidekiq:

@@ -1,6 +1,6 @@
 # Youtube Dl
 
-This is a Web UI for well-known `youtube-dl` tool.
+This is a Web UI for well-known `youtube-dl` tool. Open it at http://yt.local (update `/etc/hosts` for that) or http://localhost (update `docker-compose.yml` for that)
 
 It is not intended only for local use and don't have many features required for production like authentication or security.
 Pull requests are welcome for both local and production use.
