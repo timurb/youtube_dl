@@ -8,7 +8,7 @@ version: '3.6'
 services:
   web:
     volumes:
-      - .:/app
+      - /app/youtube_dl/download:/app/download
   sidekiq:
     volumes:
-      - .:/app
+      - /app/youtube_dl/download:/app/download

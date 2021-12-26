@@ -9,7 +9,7 @@ services:
     command: bundle exec foreman start web
     environment:
       REDIS_URL: redis://redis:6379/0
-      DATABASE_URL: "postgresql://youtube:iePh4oyu@postgres/youtube"
+      DATABASE_URL: "postgresql://youtube:$POSTGRES_PASSWORD@postgres/youtube"
       HANAMI_ENV: production
       SERVE_STATIC_ASSETS: "true"
     depends_on:
@@ -21,7 +21,7 @@ services:
     command: bundle exec foreman start sidekiq
     environment:
       REDIS_URL: redis://redis:6379/0
-      DATABASE_URL: "postgresql://youtube:iePh4oyu@postgres/youtube"
+      DATABASE_URL: "postgresql://youtube:$POSTGRES_PASSWORD@postgres/youtube"
       HANAMI_ENV: production
     depends_on:
       - web
@@ -36,6 +36,7 @@ services:
     environment:
       POSTGRES_USER: youtube
       POSTGRES_DB: youtube
+    env_file: .env
     volumes:
       - pgdata:/var/lib/postgresql/data:rw
 
