@@ -94,4 +94,13 @@ class YoutubeDlWorker
 
     Hanami.logger.warn "Could not find downloaded file #{filename}"
   end
+
+  def jobs
+    workers = Sidekiq::Workers.new.map { |_process_id, _thread_id, work| work['payload'] }
+    workers.select { |job| job['class'] == self.class.to_s }
+  end
+
+  def running?(job_id)
+    jobs.find { |job| job['args'][0]["id"] == job_id }
+  end
 end

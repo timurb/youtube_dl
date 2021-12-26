@@ -30,7 +30,9 @@
 <th class="table-primary" colspan="100%">Скачиваются</th>
 <% active.each do |video| %>
 <tr>
-<td><%= video.id %>: <%= video.state_text %></td>
+<td><%= video.id %>: <%= video.state_text %>
+<%= if job_running?(video.id) then "<span class='badge rounded-pill text-light bg-success'>Выполняется</span>" end %>
+</td>
 <td><img class="w-25" src="<%= thumbnail_for(video) %>"><br><a href="<%= video.url %>"><%= video.url %></a></td>
 <td><%= title_for(video) %></td>
 <td><%= video.location_label %></td>

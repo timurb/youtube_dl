@@ -56,6 +56,10 @@ module Web
           VideoState.completed?(state) ||
           VideoState.deleted?(state)
         end
+
+        def job_running?(id)
+          YoutubeDlWorker.new.running?(id)
+        end
       end
     end
   end
