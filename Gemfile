@@ -11,7 +11,6 @@ gem 'rollbar'
 gem 'foreman'
 
 gem 'pg'
-#gem 'sqlite3'
 
 group :development do
   # Code reloading
@@ -21,6 +20,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'dotenv', '~> 2.4'
 end
 
