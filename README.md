@@ -12,10 +12,17 @@ The intended use is run it locally with your NAS mounted, drop youtube videos to
 1. Create `.env` and `docker-compose.override.yml` files from the examples provided. Make sure you mount your download dir to both `web` and `sidekiq` containers in `docker-compose.override.yml`
 2. Create and migrate database:
 ```
-docker-compose run app /bin/bash
+docker-compose run web /bin/bash
 bundle exec hanami db migrate
 ```
-3. Start the app: `docker-compose up -d`
+3. Create first location
+```
+bundle exec hanami console
+loc = LocationRepository.new
+loc.create(path: 'default', name: 'Default')  # use actual paths in real setups
+```
+
+4. Start the app: `docker-compose up -d`
 
 ## License and authors
 * License:: MIT

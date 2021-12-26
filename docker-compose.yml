@@ -1,6 +1,16 @@
 version: '3.6'
 
 services:
+  proxy:
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    restart: always
+    ports:
+      - "80:80"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # So that Traefik/Caddy can listen to the Docker events
+      - caddy_data:/data
+
   web:
     build: .
     image: youtube-web-downloader
@@ -14,6 +24,9 @@ services:
     depends_on:
       - redis
       - postgres
+    labels:
+      caddy: http://:80
+      caddy.reverse_proxy: web:2300
 
   sidekiq:
     image: youtube-web-downloader
@@ -40,3 +53,4 @@ services:
 
 volumes:
   pgdata:
+  caddy_data:
