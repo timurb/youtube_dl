@@ -64,7 +64,8 @@ class YoutubeDlWorker
   end
 
   def download_video(video)
-    _, _, exit_status = run_command("youtube-dl #{video}", "Downloading video #{video}")
+    stdout, _, exit_status = run_command("youtube-dl #{video}", "Downloading video #{video}")
+    Hanami.logger.debug stdout
     exit_status
   end
 

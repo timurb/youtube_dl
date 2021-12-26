@@ -9,3 +9,6 @@ services:
   web:
     volumes:
       - .:/app
+  sidekiq:
+    volumes:
+      - .:/app
