@@ -2,7 +2,14 @@ require "open3"
 
 class YoutubeDlWorker
   include Sidekiq::Worker
+  sidekiq_options retry: 3
+
   include LocalVideo
+
+
+  sidekiq_retries_exhausted do |msg, ex|
+    Sidekiq.logger.warn "Failed #{msg['class']} with #{msg['args']}: #{msg['error_message']}"
+  end
 
   def perform(arg)
     repo = VideoRepository.new

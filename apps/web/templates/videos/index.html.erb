@@ -9,6 +9,13 @@
 <td><%= title_for(video) %></td>
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
+<td>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :delete, 'data-confirm' => 'Вы уверены?' do
+    submit 'Удалить', class: 'btn btn-danger show-alert'
+  end
+%>
+</td>
 </tr>
 <% end %>
 <% else %>
@@ -28,6 +35,19 @@
 <td><%= title_for(video) %></td>
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
+<td>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :patch, 'data-confirm' => 'Вы уверены?' do
+    hidden_field :state, value: :restarted
+    submit 'Перезапустить', class: 'btn btn-primary'
+  end
+%>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :delete, 'data-confirm' => 'Вы уверены?' do
+    submit 'Удалить', class: 'btn btn-danger show-alert'
+  end
+%>
+</td>
 </tr>
 <% end %>
 <% end %>
@@ -41,6 +61,19 @@
 <td><%= title_for(video) %></td>
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
+<td>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :patch, 'data-confirm' => 'Вы уверены?' do
+    hidden_field :state, value: :restarted
+    submit 'Перезапустить', class: 'btn btn-primary'
+  end
+%>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :delete, 'data-confirm' => 'Вы уверены?' do
+    submit 'Удалить', class: 'btn btn-danger show-alert'
+  end
+%>
+</td>
 </tr>
 <% end %>
 <% end %>
@@ -55,11 +88,19 @@
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
 <td>
+<td>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :patch, 'data-confirm' => 'Вы уверены?' do
+    hidden_field :state, value: :restarted
+    submit 'Перезапустить', class: 'btn btn-primary'
+  end
+%>
 <%=
   form_for :video, routes.path(:video, id: video.id), method: :delete, 'data-confirm' => 'Вы уверены?' do
     submit 'Удалить', class: 'btn btn-danger show-alert'
   end
 %>
+</td>
 </td>
 </tr>
 <% end %>
@@ -74,6 +115,14 @@
 <td><%= title_for(video) %></td>
 <td><%= video.location_label %></td>
 <td><%= video.updated_at %></td>
+<td>
+<%=
+  form_for :video, routes.path(:video, id: video.id), method: :patch, 'data-confirm' => 'Вы уверены?' do
+    hidden_field :state, value: :restarted
+    submit 'Перезапустить', class: 'btn btn-secondary'
+  end
+%>
+</td>
 </tr>
 <% end %>
 <% end %>

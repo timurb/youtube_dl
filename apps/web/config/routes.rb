@@ -11,5 +11,5 @@ Sidekiq::Web.set :session_secret, YoutubeDl::Config.new.session_secret
 
 root to: 'home#index'
 
-resources :videos, only: [:index, :new, :create, :destroy]
+resources :videos, only: [:index, :new, :create, :destroy, :update]
 mount Sidekiq::Web, at: '/sidekiq'

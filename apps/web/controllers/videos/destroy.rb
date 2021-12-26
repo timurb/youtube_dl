@@ -16,7 +16,9 @@ module Web
 
             if info && info.filename
               Hanami.logger.info "Deleting #{info.filename} from #{video.location.full_path}"
-              ::File.delete(info.filename) if info.filename
+              if info.filename && ::File.exist?(info.filename)
+                ::File.delete(info.filename)
+              end
             else
               Hanami.logger.info "No video info available for video #{video.id}"
             end
