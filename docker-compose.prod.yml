@@ -1,0 +1,13 @@
+version: '3.6'
+
+services:
+  web:
+    environment:
+      HANAMI_ENV: production
+    volumes:
+      - ./download:/app/download
+  sidekiq:
+    environment:
+      HANAMI_ENV: production
+    volumes:
+      - ./download:/app/download
