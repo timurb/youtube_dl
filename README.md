@@ -22,6 +22,8 @@ loc = LocationRepository.new
 loc.create(path: 'default', name: 'Default')  # use actual paths in real setups
 ```
 
+Update the `.dockerignore` with your location path (in place of `download`) with your download location.
+
 4. Start the app: `docker-compose up -d`
 
 ## License and authors
